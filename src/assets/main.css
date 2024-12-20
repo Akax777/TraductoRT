@@ -1,0 +1,7 @@
+html,body{
+    background-image: url(hero_img.jpg);
+    background-size: cover;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
