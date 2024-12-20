@@ -47,6 +47,10 @@ const lang= ref(["Spanish","English","French"])
 </template>
 
 <style scoped>
+    button{
+        font-size: 16px;
+        height: 90;
+    }
     #container{
         border: solid green 1px;
         height: 500px;
@@ -76,7 +80,7 @@ const lang= ref(["Spanish","English","French"])
     .card-header{
         border: solid red 1px;
         height: 10%;
-        margin-inline: 10px;
+        gap: 20px;
     }
     .card-body{
         border: solid red 1px;
