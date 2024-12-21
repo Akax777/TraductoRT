@@ -3,18 +3,38 @@ import change from "@/assets/Horizontal_top_left_main.svg"
 import copy from "@/assets/Copy.svg"
 import listen from "@/assets/sound_max_fill.svg"
 import { useTranslate } from "@/composable/useTranslate";
+import { ref,watch } from "vue";
 
 const props = defineProps({
-    lang: Array
+    lang:Array,
+    toSend: Object
 })
 
-const {translatedText} = useTranslate('Hola amigo','es','en')
+const toTranslate = ref('')
+
+watch(()=>props.toSend,()=>{
+    toTranslate.value=props.toSend.toTranslate
+    console.log('candela')
+})
+
+const {translatedText} = useTranslate(toTranslate.value,'es','en')
+
+const selectedtw = ref("")
+
+const handleSelected = (abv)=>{
+    selectedtw.value=abv;
+}
 </script>
 
 <template>
     <div class="card"> 
         <div class="card-header">
-            <button class="button-header" v-for="l in lang">{{ l }}</button>
+            <button class="button-header" 
+            v-for="l in lang"
+            @click="handleSelected(l.abv)"  
+            :class="l.abv==selectedtw?'selected':null">
+            {{ l.l }}
+            </button>
             <button class="btn-with-img">
                 <img class="img-button" :src="change" alt="">
             </button>

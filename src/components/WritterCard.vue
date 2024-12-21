@@ -8,15 +8,32 @@ import { computed, ref } from "vue";
 const props = defineProps({
     lang: Array
 })
-const text = ref('')
-const textLength = computed(()=>text.value.length)
+const text = ref('');
+const textLength = computed(()=>text.value.length);
+const selected = ref("")
+
+const handleSelected = (abv)=>{
+    selected.value=abv;
+}
+
+const emit = defineEmits(['response']);
+
+const emitEvent=()=>{
+    emit('response',{toTranslate:text.value,lang1:selected.value})
+}
+
 </script>
 
 <template>
     <div class="card">
         <div class="card-header">
             <button class="button-header">Detect Language</button>
-            <button class="button-header" v-for="l in lang">{{ l }}</button>
+            <button class="button-header" 
+                v-for="l in lang" 
+                @click="handleSelected(l.abv)"  
+                :class="l.abv==selected?'selected':null">
+                {{ l.l }}
+            </button>
         </div>
         <hr>
         <div class="card-body">
@@ -30,7 +47,7 @@ const textLength = computed(()=>text.value.length)
             <button class="btn-with-img">
                 <img class="img-button" :src="copy" alt="">
             </button>
-            <button id="translate">
+            <button id="translate" @click="emitEvent">
                 <img id="translate-img"  :src="SortAlfa" alt="">Translate
             </button>
         </div>
