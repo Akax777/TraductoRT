@@ -2,10 +2,13 @@
 import change from "@/assets/Horizontal_top_left_main.svg"
 import copy from "@/assets/Copy.svg"
 import listen from "@/assets/sound_max_fill.svg"
+import { useTranslate } from "@/composable/useTranslate";
 
 const props = defineProps({
     lang: Array
 })
+
+const {translatedText} = useTranslate('Hola amigo','es','en')
 </script>
 
 <template>
@@ -18,7 +21,7 @@ const props = defineProps({
         </div>
         <hr>
         <div class="card-body">
-            <p class="text"></p>
+            <p class="text">{{ translatedText }}</p>
         </div>
         <div class="card-footer">
             <button class="btn-with-img">

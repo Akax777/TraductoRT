@@ -4,6 +4,7 @@ import copy from "@/assets/Copy.svg"
 import listen from "@/assets/sound_max_fill.svg"
 import { computed, ref } from "vue";
 
+
 const props = defineProps({
     lang: Array
 })
