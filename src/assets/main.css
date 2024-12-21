@@ -5,3 +5,132 @@ html,body{
     margin: 0;
     padding: 0;
 }
+button{
+    border-radius: 24%;
+    font-size: 16px;
+    margin-inline: 15px;
+    padding: 1%;
+}
+
+.button-header{
+    background:  none;
+    border: none;
+    color: #4D5562;
+    font-family: 'DM Sans';
+    transition: 0.3s;
+}
+
+.selected{
+    background:  #cdd5e07e;
+    color: #f9fafbe8;
+}
+
+.btn-with-img{
+    align-items: center;
+    align-self: center;
+    background-color: #12182600;
+    border: solid #394150;
+    display: flex;
+    margin: 8px;
+    height: 70%;
+    width: 6%;
+}
+
+.btn-with-img:nth-child(4){
+    margin-left: auto;
+    height: 100%;
+    width: 6%;
+}
+
+#container{
+    height: 500px;
+    padding: 5%;
+}
+.card{
+    border: solid #4D5562 1px;
+    border-radius: 30px;
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.card:nth-child(1){
+    flex-grow: 0.7;
+    background-color: #212936cc;
+}
+.card:nth-child(2){
+    background-color: #121826cc;
+}
+.card-header{
+    display: flex;
+    height: 10%;
+}
+.card-body{
+    height: 70%;
+}
+.card-footer{
+    display: flex;
+    height: 15%;
+}
+
+hr{
+border: solid #394150 0.2px;
+}
+
+#inner-container{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    height: 90%;
+    width: 100%;
+}
+
+.img-button{
+    flex-grow: 1;
+}
+
+textarea{
+    background: none;
+    border: none;
+    color: #F9FAFB;
+    font-family: 'DM Sans';
+    font-size: 18px;
+    outline: none;
+    overflow: hidden;
+    resize: none;
+    width: 100%;
+}
+
+#translate{
+    align-items: center;
+    background-color: #3662E3;
+    border-radius: 15px;
+    border: solid #7CA9F3;
+    color: #F9FAFB;
+    display: flex;
+    font-family: 'DM Sans';
+    font-size: 17px;
+    margin-left: auto;
+    padding-inline: 5%;
+    height: 95%;
+    width: 24%;
+}
+
+#translate-img{
+    height: 75%;
+}
+
+.text{
+    height: 80%;
+    margin: 0;
+    padding: 5px;
+    width: 98%;
+}
+
+#word-counter{
+    color: #394150;
+    font-family: 'DM Sans';
+    font-size: 14px;
+    height: 10%;
+    margin: 0;
+    text-align: right;
+}
