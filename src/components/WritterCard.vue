@@ -2,7 +2,7 @@
 import SortAlfa from "@/assets/Sort_alfa.svg"
 import copy from "@/assets/Copy.svg"
 import listen from "@/assets/sound_max_fill.svg"
-import { computed, ref } from "vue";
+import { computed, ref,watchEffect } from "vue";
 import { useTranslate } from "@/composable/useTranslate";
 
 
@@ -14,8 +14,10 @@ const text = ref('');
 const textLength = computed(()=>text.value.length);
 const selected = ref("")
 const textTranslated = ref('')
-
+const isReady =ref(false)
 const emit = defineEmits(['textTranslated'])
+
+watchEffect(() => { isReady.value = text.value !== '' && selected.value !== '' && props.lng2.lang2 !== ''; });
 
 const translate = async (q,lang1,lang2)=>{
     const {translatedText,isLoading} =await useTranslate(q,lang1,lang2)
@@ -24,7 +26,7 @@ const translate = async (q,lang1,lang2)=>{
 }
 
 const handleSelected = (abv)=>{
-    selected.value=abv;
+    if(selected.value==abv){selected.value=''}else{selected.value=abv;}
 }
 
 </script>
@@ -52,7 +54,7 @@ const handleSelected = (abv)=>{
             <button class="btn-with-img">
                 <img class="img-button" :src="copy" alt="">
             </button>
-            <button id="translate" @click="translate(text,selected,props.lng2.lang2)">
+            <button :class="isReady?'translate':'translate translate-yet'" @click="isReady?translate(text,selected,props.lng2.lang2):null" >
                 <img id="translate-img"  :src="SortAlfa" alt="">Translate
             </button>
         </div>

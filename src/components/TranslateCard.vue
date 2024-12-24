@@ -19,7 +19,7 @@ const emitEvent=()=>{
 }
 
 const handleSelected = (abv)=>{
-    selectedtw.value=abv;
+    if(selectedtw.value==abv){selectedtw.value=''}else{selectedtw.value=abv;}
 }
 </script>
 

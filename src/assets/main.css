@@ -97,7 +97,7 @@ textarea{
     width: 100%;
 }
 
-#translate{
+.translate{
     align-items: center;
     background-color: #3662E3;
     border-radius: 15px;
@@ -106,10 +106,18 @@ textarea{
     display: flex;
     font-family: 'DM Sans';
     font-size: 17px;
+    height: 95%;
     margin-left: auto;
     padding-inline: 5%;
-    height: 95%;
+    transition: all 0.3s;
     width: 24%;
+}
+
+.translate-yet{
+    background-color: #3661e310;
+    border: solid #7caaf37c;
+    color: #f9fafba1;
+    transition: all 0.3s;
 }
 
 #translate-img{
