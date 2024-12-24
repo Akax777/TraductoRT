@@ -1,19 +1,20 @@
+import { getTranslation } from '@/helpers/getTranslation';
 import { ref } from 'vue';
 
-export function useTranslate(q,lang1,lang2) {
+export const useTranslate = async (q, lang1, lang2) => {
+    const translatedText = ref('');
+    const isLoading = ref(true);
 
-    const translatedText = ref('')
+    try {
+        translatedText.value = await getTranslation(q, lang1, lang2);
+    } catch (error) {
+        console.error("Error al traducir:", error);
+    } finally {
+        isLoading.value = false;
+    }
 
-    fetch(`https://api.mymemory.translated.net/get?q=${q}&langpair=${lang1}|${lang2}`)
-    .then(response => response.json())
-    .then(data => {
-    translatedText.value=data.responseData.translatedText
-    })
-    .catch(error => {
-    console.log(error)
-    })
-
-return {
-    translatedText
+    return {
+        translatedText,
+        isLoading
+    };
 };
-}

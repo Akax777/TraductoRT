@@ -3,23 +3,28 @@ import SortAlfa from "@/assets/Sort_alfa.svg"
 import copy from "@/assets/Copy.svg"
 import listen from "@/assets/sound_max_fill.svg"
 import { computed, ref } from "vue";
+import { useTranslate } from "@/composable/useTranslate";
 
 
 const props = defineProps({
-    lang: Array
+    lang: Array,
+    lng2: Object
 })
 const text = ref('');
 const textLength = computed(()=>text.value.length);
 const selected = ref("")
+const textTranslated = ref('')
+
+const emit = defineEmits(['textTranslated'])
+
+const translate = async (q,lang1,lang2)=>{
+    const {translatedText,isLoading} =await useTranslate(q,lang1,lang2)
+    textTranslated.value= translatedText;
+    emit('textTranslated',{textTranslated})
+}
 
 const handleSelected = (abv)=>{
     selected.value=abv;
-}
-
-const emit = defineEmits(['response']);
-
-const emitEvent=()=>{
-    emit('response',{toTranslate:text.value,lang1:selected.value})
 }
 
 </script>
@@ -47,7 +52,7 @@ const emitEvent=()=>{
             <button class="btn-with-img">
                 <img class="img-button" :src="copy" alt="">
             </button>
-            <button id="translate" @click="emitEvent">
+            <button id="translate" @click="translate(text,selected,props.lng2.lang2)">
                 <img id="translate-img"  :src="SortAlfa" alt="">Translate
             </button>
         </div>

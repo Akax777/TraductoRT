@@ -5,11 +5,12 @@ import TranslateCard from "./components/TranslateCard.vue";
 import {ref} from 'vue'
 
 const lang= ref([
-    {id:1, l:"Spanish", abv:"sp"},
+    {id:1, l:"Spanish", abv:"es"},
     {id:2, l:"English",abv:"en"},
     {id:3, l:"French",abv:"fr"}])
 
-const toSend=ref({ toTranslate: '', lang1: '' })
+const lng2=ref({ lang2: '' })
+const textTranslated= ref({})
 
 </script>
 
@@ -19,8 +20,8 @@ const toSend=ref({ toTranslate: '', lang1: '' })
             <img  :src="logo"/>
         </div>
         <div id="inner-container">
-            <WritterCard :lang @response="(msg)=>toSend=msg"/>
-            <TranslateCard :lang :toSend />
+            <WritterCard :lang :lng2 @text-translated="(t)=>textTranslated=t"/>
+            <TranslateCard :lang  @response="(msg)=>lng2=msg" :text-translated/>
         </div>
     </div>
 </template>
