@@ -16,7 +16,7 @@ const textTranslated= ref({})
 
 <template>
     <div id="container">
-        <div style="text-align: center;">
+        <div id="container-top">
             <img  :src="logo"/>
         </div>
         <div id="inner-container">
