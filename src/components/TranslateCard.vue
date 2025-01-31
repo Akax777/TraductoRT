@@ -2,25 +2,25 @@
 import change from "@/assets/Horizontal_top_left_main.svg"
 import copy from "@/assets/Copy.svg"
 import listen from "@/assets/sound_max_fill.svg"
-import { ref} from "vue";
+import { ref,watch} from "vue";
+import { useLanguage } from "@/stores/useLanguage";
 
 const props = defineProps({
     lang:Array,
-    textTranslated: Object
 })
+
+const lng = useLanguage();
 
 const selectedtw = ref("")
 
-const emit = defineEmits(['response']);
-
-const lng2=ref({ lang2: '' })
-const emitEvent=()=>{
-    emit('response',{lang2:selectedtw.value})
-}
+watch(selectedtw, ()=>{
+    lng.lang.lang2=selectedtw;
+})
 
 const handleSelected = (abv)=>{
     if(selectedtw.value==abv){selectedtw.value=''}else{selectedtw.value=abv;}
 }
+
 </script>
 
 <template>
@@ -28,17 +28,17 @@ const handleSelected = (abv)=>{
         <div class="card-header">
             <button class="button-header" 
             v-for="l in lang"
-            @click="handleSelected(l.abv),emitEvent()"  
+            @click="handleSelected(l.abv)"  
             :class="l.abv==selectedtw?'selected':null">
             {{ l.l }}
             </button>
-            <button class="btn-with-img">
+            <button class="btn-with-img" @click="lng.switchLng">
                 <img class="img-button" :src="change" alt="">
             </button>
         </div>
         <hr>
         <div class="card-body">
-            <p class="text">{{props.textTranslated.textTranslated }}</p>
+            <p class="text">{{lng.textTranslated }}</p>
         </div>
         <div class="card-footer">
             <button class="btn-with-img">

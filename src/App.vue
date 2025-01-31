@@ -9,9 +9,6 @@ const lang= ref([
     {id:2, l:"English",abv:"en"},
     {id:3, l:"French",abv:"fr"}])
 
-const lng2=ref({ lang2: '' })
-const textTranslated= ref({})
-
 </script>
 
 <template>
@@ -20,8 +17,8 @@ const textTranslated= ref({})
             <img  :src="logo"/>
         </div>
         <div id="inner-container">
-            <WritterCard :lang :lng2 @text-translated="(t)=>textTranslated=t"/>
-            <TranslateCard :lang  @response="(msg)=>lng2=msg" :text-translated/>
+            <WritterCard :lang />
+            <TranslateCard :lang/>
         </div>
     </div>
 </template>
